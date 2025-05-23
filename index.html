@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>You Have Been Summoned</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+        
+        body {
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(45deg, #ff69b4, #ffb6c1, #ffc0cb, #ff1493);
+            background-size: 400% 400%;
+            animation: gradientShift 8s ease infinite;
+            font-family: 'Press Start 2P', monospace;
+            color: #fff;
+            overflow: hidden;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        
+        .game-container {
+            width: 90%;
+            max-width: 600px;
+            background: linear-gradient(135deg, #ff69b4, #ff1493);
+            border: 4px solid #fff;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 0 30px rgba(255, 105, 180, 0.8), inset 0 0 20px rgba(255, 255, 255, 0.2);
+            position: relative;
+            animation: fadeIn 2s ease-in;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: scale(0.8) rotate(-5deg); }
+            to { opacity: 1; transform: scale(1) rotate(0deg); }
+        }
+        
+        .title {
+            text-align: center;
+            font-size: 16px;
+            color: #fff;
+            margin-bottom: 30px;
+            text-shadow: 2px 2px 0px #ff1493, 0 0 10px #fff;
+            animation: sparkleGlow 2s ease-in-out infinite alternate;
+        }
+        
+        @keyframes sparkleGlow {
+            from { text-shadow: 2px 2px 0px #ff1493, 0 0 10px #fff; }
+            to { text-shadow: 2px 2px 0px #ff1493, 0 0 20px #fff, 0 0 30px #ffb6c1; }
+        }
+        
+        .message-box {
+            background: linear-gradient(135deg, #ffb6c1, #ffc0cb);
+            border: 3px solid #fff;
+            padding: 20px;
+            margin-bottom: 25px;
+            border-radius: 10px;
+            box-shadow: inset 0 0 15px rgba(255, 255, 255, 0.3);
+        }
+        
+        .message-text {
+            font-size: 11px;
+            line-height: 1.8;
+            color: #8b0039;
+            margin-bottom: 15px;
+            animation: typewriter 3s steps(60) 1s both;
+            white-space: nowrap;
+            overflow: hidden;
+            border-right: 2px solid #8b0039;
+        }
+        
+        @keyframes typewriter {
+            from { width: 0; }
+            to { width: 100%; }
+        }
+        
+        @keyframes blink {
+            50% { border-color: transparent; }
+        }
+        
+        .message-text {
+            animation: typewriter 3s steps(60) 1s both, blink 1s infinite 4s;
+            white-space: normal;
+        }
+        
+        .choices {
+            margin-top: 25px;
+            opacity: 0;
+            animation: slideUp 1s ease-out 4.5s forwards;
+        }
+        
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .choice-button {
+            display: block;
+            width: 100%;
+            background: linear-gradient(135deg, #ff69b4, #ff1493);
+            border: 3px solid #fff;
+            color: #fff;
+            font-family: 'Press Start 2P', monospace;
+            font-size: 10px;
+            padding: 15px 20px;
+            margin: 10px 0;
+            cursor: pointer;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+            text-align: left;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(255, 105, 180, 0.4);
+        }
+        
+        .choice-button:before {
+            content: "🌟 ";
+            margin-right: 10px;
+        }
+        
+        .choice-button:hover {
+            background: linear-gradient(135deg, #ff1493, #dc143c);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(255, 105, 180, 0.6);
+            animation: bounce 0.6s ease infinite alternate;
+        }
+        
+        @keyframes bounce {
+            from { transform: translateY(-3px); }
+            to { transform: translateY(-1px); }
+        }
+        
+        .choice-button:active {
+            transform: translateY(0px);
+        }
+        
+        .decorative-stars {
+            position: absolute;
+            color: #fff;
+            font-size: 20px;
+            animation: twinkle 2s ease-in-out infinite;
+            pointer-events: none;
+        }
+        
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.3; transform: scale(0.8); }
+            50% { opacity: 1; transform: scale(1.2); }
+        }
+        
+        .star-1 { top: 15px; left: 20px; animation-delay: 0s; }
+        .star-2 { top: 20px; right: 30px; animation-delay: 0.5s; }
+        .star-3 { bottom: 25px; left: 25px; animation-delay: 1s; }
+        .star-4 { bottom: 20px; right: 20px; animation-delay: 1.5s; }
+        
+
+        
+        .party-details {
+            display: none;
+            background: linear-gradient(135deg, #ffb6c1, #ffc0cb);
+            border: 3px solid #fff;
+            padding: 20px;
+            margin-top: 20px;
+            border-radius: 10px;
+            animation: slideUp 0.5s ease-out;
+            box-shadow: inset 0 0 15px rgba(255, 255, 255, 0.3);
+        }
+        
+        .party-details.show {
+            display: block;
+        }
+        
+        .party-info {
+            font-size: 10px;
+            line-height: 1.6;
+            color: #8b0039;
+        }
+        
+        .party-title {
+            color: #ff1493;
+            font-size: 14px;
+            margin-bottom: 15px;
+            text-align: center;
+            text-shadow: 1px 1px 0px #fff;
+        }
+        
+        .denied-message {
+            display: none;
+            background: linear-gradient(135deg, #ff69b4, #ff1493);
+            border: 3px solid #fff;
+            padding: 20px;
+            margin-top: 20px;
+            border-radius: 10px;
+            text-align: center;
+            animation: shake 0.5s ease-in-out;
+        }
+        
+        .denied-message.show {
+            display: block;
+        }
+        
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-5px); }
+            75% { transform: translateX(5px); }
+        }
+        
+        .denied-text {
+            font-size: 16px;
+            color: #fff;
+            text-shadow: 2px 2px 0px #8b0039;
+            margin-bottom: 20px;
+        }
+        
+        .continue-message {
+            display: none;
+            background: linear-gradient(135deg, #ffb6c1, #ffc0cb);
+            border: 3px solid #fff;
+            padding: 20px;
+            margin-top: 20px;
+            border-radius: 10px;
+            animation: slideUp 0.5s ease-out;
+            box-shadow: inset 0 0 15px rgba(255, 255, 255, 0.3);
+        }
+        
+        .continue-message.show {
+            display: block;
+        }
+        
+        .continue-text {
+            font-size: 11px;
+            line-height: 1.6;
+            color: #8b0039;
+            margin-bottom: 20px;
+        }
+        
+        .sakura-petals {
+            position: fixed;
+            top: -10px;
+            animation: fall linear infinite;
+            pointer-events: none;
+            color: #ffb6c1;
+            font-size: 20px;
+            z-index: -1;
+        }
+        
+        @keyframes fall {
+            0% {
+                transform: translateY(-100vh) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="game-container">
+        <div class="decorative-stars star-1">⭐</div>
+        <div class="decorative-stars star-2">✨</div>
+        <div class="decorative-stars star-3">🌟</div>
+        <div class="decorative-stars star-4">💫</div>
+        
+        <div class="title">✨ MAGICAL QUEST INVITATION ✨</div>
+        
+        <div class="message-box" id="initial-message">
+            <div class="message-text">
+                You have been summoned to join an epic quest of friendship, laughter, and celebration! A brave bride-to-be requires your presence for her final adventure before the big day...
+            </div>
+            
+            <div class="choices" id="initial-choices">
+                <button class="choice-button" onclick="showPartyDetails()">
+                    Find out more!
+                </button>
+                <button class="choice-button" onclick="showDenied()">
+                    Return to your hole
+                </button>
+            </div>
+        </div>
+        
+        <div id="denied-message" class="denied-message">
+            <div class="denied-text">DENIED! 🚫</div>
+            <button class="choice-button" onclick="showContinueMessage()" style="width: auto; padding: 10px 20px; margin: 0 auto; display: block;">
+                Continue...
+            </button>
+        </div>
+        
+        <div id="continue-message" class="continue-message">
+            <div class="continue-text">
+                Despite your misgivings, a motley crew of adventurers wouldn't be complete without you. Continue...
+            </div>
+            <button class="choice-button" onclick="showPartyDetails()">
+                Find out more!
+            </button>
+        </div>
+        
+        <div id="party-details" class="party-details">
+            <div class="party-title">🌸 MAGICAL QUEST DETAILS 🌸</div>
+            <div class="party-info">
+                DATE: 20th/21st June<br><br>
+                
+                QUEST OBJECTIVE:<br>
+                Gather Jackie's closest allies for one final epic celebration before embarking on the marriage adventure! 🌸<br><br>
+                
+                [Additional quest details will be revealed soon...]<br><br>
+                
+                REQUIRED MAGICAL ITEMS:<br>
+                • Party spirit (+100 Fun) ✨<br>
+                • Comfortable shoes (+50 Dance) 👠<br>
+                • Camera for memories (+25 Nostalgia) 📸<br><br>
+                
+                SPECIAL ABILITIES UNLOCKED:<br>
+                • Unlimited laughter magic 😂<br>
+                • Enhanced friendship bonds 💕<br>
+                • Memory creation enchantment 🌟<br><br>
+                
+                RSVP to accept this magical quest!<br>
+                Contact: [Insert Contact Info] 💌
+            </div>
+        </div>
+        
+        <div id="jackie-info" class="party-details">
+            <div class="party-title">👰 MAGICAL GIRL PROFILE 👰</div>
+            <div class="party-info">
+                NAME: Jackie the Enchantress<br>
+                CLASS: Soon-to-be Wife Magical Girl<br>
+                LEVEL: Getting Married! 💍<br><br>
+                SPECIAL MAGICAL POWERS:<br>
+                • Master of Fun Spells ✨<br>
+                • Friendship Enchantment Magic 💕<br>
+                • Party Planning Sorcery 🎉<br><br>
+                QUEST OBJECTIVE:<br>
+                Gather her closest magical allies for one final epic celebration before embarking on the marriage adventure! 🌸<br><br>
+                Will you join her magical girl squad?<br><br>
+                Your presence would make this quest legendary! 🌟
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        function showPartyDetails() {
+            document.getElementById('initial-message').style.display = 'none';
+            hideAll();
+            document.getElementById('party-details').classList.add('show');
+            createSakuraPetals();
+        }
+        
+        function showJackieInfo() {
+            document.getElementById('initial-message').style.display = 'none';
+            hideAll();
+            document.getElementById('jackie-info').classList.add('show');
+            createSakuraPetals();
+        }
+        
+        function showDenied() {
+            document.getElementById('initial-message').style.display = 'none';
+            hideAll();
+            document.getElementById('denied-message').classList.add('show');
+        }
+        
+        function showContinueMessage() {
+            document.getElementById('initial-message').style.display = 'none';
+            hideAll();
+            document.getElementById('continue-message').classList.add('show');
+        }
+        
+        function hideAll() {
+            document.getElementById('party-details').classList.remove('show');
+            document.getElementById('jackie-info').classList.remove('show');
+            document.getElementById('denied-message').classList.remove('show');
+            document.getElementById('continue-message').classList.remove('show');
+        }
+        
+        function createSakuraPetals() {
+            for (let i = 0; i < 8; i++) {
+                setTimeout(() => {
+                    const petal = document.createElement('div');
+                    petal.className = 'sakura-petals';
+                    petal.innerHTML = '🌸';
+                    petal.style.left = Math.random() * 100 + '%';
+                    petal.style.animationDuration = (Math.random() * 3 + 4) + 's';
+                    petal.style.animationDelay = Math.random() * 2 + 's';
+                    document.body.appendChild(petal);
+                    
+                    setTimeout(() => {
+                        petal.remove();
+                    }, 7000);
+                }, i * 300);
+            }
+        }
+        
+        // Add some initial sakura petals
+        setTimeout(createSakuraPetals, 2000);
+        setInterval(createSakuraPetals, 10000);
+    </script>
+</body>
+</html>
