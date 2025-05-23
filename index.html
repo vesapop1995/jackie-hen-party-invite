@@ -288,19 +288,38 @@
         </div>
         
         <div id="jackie-options" class="party-details">
-            <div class="party-title">✨ WELCOME JACKIE! ✨</div>
+            <div class="party-title">✨ OUR QUEEN! ✨</div>
             <div class="party-info">
-                You have been summoned to join an epic quest of friendship, laughter, and celebration! A brave bride-to-be requires your presence for her final adventure before the big day...<br><br>
+                All hail the bride-to-be! An assortment of your closest allies are gathering to join you on an epic quest of friendship, laughter, and celebration!<br><br>
                 
                 What would you like to do?
             </div>
             <div style="margin-top: 20px;">
-                <button class="choice-button" onclick="showPartyDetails()">
+                <button class="choice-button" onclick="showJackieAdventure()">
                     Find out more!
                 </button>
-                <button class="choice-button" onclick="showDenied()">
-                    Return to your hole
+                <button class="choice-button" onclick="showJackieAdventure()">
+                    There's no evading fate! Find out more again!
                 </button>
+            </div>
+        </div>
+        
+        <div id="jackie-adventure" class="party-details">
+            <div class="party-title">🌸 JACKIE'S ADVENTURE 🌸</div>
+            <div class="party-info">
+                DATE: 20th-22nd June<br><br>
+                
+                QUEST OBJECTIVE:<br>
+                Gather your closest allies for one final epic celebration before embarking on the adventure of matrimony! 🌸<br><br>
+                
+                REQUIRED MAGICAL ITEMS:<br>
+                ✅ Swimming stuff<br>
+                ✅ Some fancy dress<br>
+                ✅ HYPE<br><br>
+                
+                [Additional quest details will be revealed soon...]<br><br>
+                
+                Contact Kirst or Vesa for burning questions 💌
             </div>
         </div>
         
@@ -314,17 +333,28 @@
                     I'm definitely not-Jackie
                 </button>
                 <button class="choice-button" onclick="showJackieOptions()">
-                    Whoopsie, just kidding, I am Jackie
+                    Whoopsie, just kidding, I am Jackie!
                 </button>
             </div>
         </div>
         
         <div id="not-jackie-warning" class="party-details">
-            <div class="party-title">⚠️ ACCESS DENIED ⚠️</div>
+            <div class="party-title">✨ WELCOME ADVENTURER! ✨</div>
             <div class="party-info">
-                This magical quest is for Jackie's eyes only! The secrets contained within are too powerful for non-Jackie entities to handle. Please return to your regularly scheduled activities.<br><br>
+                You have been summoned to join an epic quest of friendship, laughter, and celebration! A brave bride-to-be requires your presence for her final adventure before the big day...<br><br>
+
+What would you like to do?
+<br><br>
                 
-                🌸 Have a magical day! 🌸
+        
+            </div>
+            <div style="margin-top: 20px;">
+                <button class="choice-button" onclick="showPartyDetails()">
+                    Find out more!
+                </button>
+                <button class="choice-button" onclick="showDenied()">
+                    Go back to your hole
+                </button>
             </div>
         </div>
         
@@ -355,17 +385,16 @@
                 [Additional quest details will be revealed soon...]<br><br>
                 
                 REQUIRED MAGICAL ITEMS:<br>
-                • Party spirit (+100 Fun) ✨<br>
-                • Comfortable shoes (+50 Dance) 👠<br>
-                • Camera for memories (+25 Nostalgia) 📸<br><br>
+                ✅ Swimming stuff<br>
+                ✅ Some fancy dress<br>
+                ✅ HYPE<br><br>
                 
                 SPECIAL ABILITIES UNLOCKED:<br>
                 • Unlimited laughter magic 😂<br>
                 • Enhanced friendship bonds 💕<br>
                 • Memory creation enchantment 🌟<br><br>
                 
-                RSVP to accept this magical quest!<br>
-                Contact: [Insert Contact Info] 💌
+                Contact Kirst or Vesa for more info 💌
             </div>
         </div>
         
@@ -388,25 +417,42 @@
     </div>
     
     <script>
+        let currentPath = 'initial';
+        let isJackie = false;
+        
         function showJackieOptions() {
+            isJackie = true;
+            currentPath = 'jackie';
             document.getElementById('initial-message').style.display = 'none';
             hideAll();
             document.getElementById('jackie-options').classList.add('show');
             createSakuraPetals();
         }
         
+        function showJackieAdventure() {
+            currentPath = 'adventure';
+            document.getElementById('initial-message').style.display = 'none';
+            hideAll();
+            document.getElementById('jackie-adventure').classList.add('show');
+            createSakuraPetals();
+        }
+        
         function showNotJackieVerification() {
+            isJackie = false;
+            currentPath = 'verification';
             document.getElementById('initial-message').style.display = 'none';
             hideAll();
             document.getElementById('not-jackie-verification').classList.add('show');
         }
         
         function showNotJackieWarning() {
+            currentPath = 'warning';
             hideAll();
             document.getElementById('not-jackie-warning').classList.add('show');
         }
         
         function showPartyDetails() {
+            currentPath = 'details';
             document.getElementById('initial-message').style.display = 'none';
             hideAll();
             document.getElementById('party-details').classList.add('show');
@@ -414,6 +460,7 @@
         }
         
         function showJackieInfo() {
+            currentPath = 'info';
             document.getElementById('initial-message').style.display = 'none';
             hideAll();
             document.getElementById('jackie-info').classList.add('show');
@@ -421,12 +468,14 @@
         }
         
         function showDenied() {
+            currentPath = 'denied';
             document.getElementById('initial-message').style.display = 'none';
             hideAll();
             document.getElementById('denied-message').classList.add('show');
         }
         
         function showContinueMessage() {
+            currentPath = 'continue';
             document.getElementById('initial-message').style.display = 'none';
             hideAll();
             document.getElementById('continue-message').classList.add('show');
@@ -434,6 +483,7 @@
         
         function hideAll() {
             document.getElementById('jackie-options') && document.getElementById('jackie-options').classList.remove('show');
+            document.getElementById('jackie-adventure') && document.getElementById('jackie-adventure').classList.remove('show');
             document.getElementById('not-jackie-verification') && document.getElementById('not-jackie-verification').classList.remove('show');
             document.getElementById('not-jackie-warning') && document.getElementById('not-jackie-warning').classList.remove('show');
             document.getElementById('party-details').classList.remove('show');
