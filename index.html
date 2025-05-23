@@ -162,8 +162,6 @@
         .star-3 { bottom: 25px; left: 25px; animation-delay: 1s; }
         .star-4 { bottom: 20px; right: 20px; animation-delay: 1.5s; }
         
-
-        
         .party-details {
             display: none;
             background: linear-gradient(135deg, #ffb6c1, #ffc0cb);
@@ -276,16 +274,57 @@
         
         <div class="message-box" id="initial-message">
             <div class="message-text">
-                You have been summoned to join an epic quest of friendship, laughter, and celebration! A brave bride-to-be requires your presence for her final adventure before the big day...
+                You have been summoned on a magical quest! Please identify yourself to proceed...
             </div>
             
             <div class="choices" id="initial-choices">
+                <button class="choice-button" onclick="showJackieOptions()">
+                    Jackie
+                </button>
+                <button class="choice-button" onclick="showNotJackieVerification()">
+                    Not-Jackie
+                </button>
+            </div>
+        </div>
+        
+        <div id="jackie-options" class="party-details">
+            <div class="party-title">✨ WELCOME JACKIE! ✨</div>
+            <div class="party-info">
+                You have been summoned to join an epic quest of friendship, laughter, and celebration! A brave bride-to-be requires your presence for her final adventure before the big day...<br><br>
+                
+                What would you like to do?
+            </div>
+            <div style="margin-top: 20px;">
                 <button class="choice-button" onclick="showPartyDetails()">
                     Find out more!
                 </button>
                 <button class="choice-button" onclick="showDenied()">
                     Return to your hole
                 </button>
+            </div>
+        </div>
+        
+        <div id="not-jackie-verification" class="party-details">
+            <div class="party-title">🤔 IDENTITY VERIFICATION 🤔</div>
+            <div class="party-info">
+                Are you sure you're not-Jackie? Jackie's must head back and ensure they select the correct option to avoid being privy to dangerous information...
+            </div>
+            <div style="margin-top: 20px;">
+                <button class="choice-button" onclick="showNotJackieWarning()">
+                    I'm definitely not-Jackie
+                </button>
+                <button class="choice-button" onclick="showJackieOptions()">
+                    Whoopsie, just kidding, I am Jackie
+                </button>
+            </div>
+        </div>
+        
+        <div id="not-jackie-warning" class="party-details">
+            <div class="party-title">⚠️ ACCESS DENIED ⚠️</div>
+            <div class="party-info">
+                This magical quest is for Jackie's eyes only! The secrets contained within are too powerful for non-Jackie entities to handle. Please return to your regularly scheduled activities.<br><br>
+                
+                🌸 Have a magical day! 🌸
             </div>
         </div>
         
@@ -349,6 +388,24 @@
     </div>
     
     <script>
+        function showJackieOptions() {
+            document.getElementById('initial-message').style.display = 'none';
+            hideAll();
+            document.getElementById('jackie-options').classList.add('show');
+            createSakuraPetals();
+        }
+        
+        function showNotJackieVerification() {
+            document.getElementById('initial-message').style.display = 'none';
+            hideAll();
+            document.getElementById('not-jackie-verification').classList.add('show');
+        }
+        
+        function showNotJackieWarning() {
+            hideAll();
+            document.getElementById('not-jackie-warning').classList.add('show');
+        }
+        
         function showPartyDetails() {
             document.getElementById('initial-message').style.display = 'none';
             hideAll();
@@ -376,6 +433,9 @@
         }
         
         function hideAll() {
+            document.getElementById('jackie-options') && document.getElementById('jackie-options').classList.remove('show');
+            document.getElementById('not-jackie-verification') && document.getElementById('not-jackie-verification').classList.remove('show');
+            document.getElementById('not-jackie-warning') && document.getElementById('not-jackie-warning').classList.remove('show');
             document.getElementById('party-details').classList.remove('show');
             document.getElementById('jackie-info').classList.remove('show');
             document.getElementById('denied-message').classList.remove('show');
