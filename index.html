@@ -437,7 +437,7 @@ What would you like to do?
                 Your first quest involves crowd-sourcing questions for a Mr & Mrs game we'll play at the hen-do! 🎮<br><br>
                 
                 OPERATION DETAILS:<br>
-                We will be asking Chris to answer questions, and Jackie will have to try and guess what his answers are. The more creative and revealing your questions, the more entertaining the game! 😏<br><br>
+                We will be asking Chris (the husband-to-be) to answer questions, and Jackie will have to try and guess what his answers are. The more creative and revealing your questions, the more entertaining the game! 😏<br><br>
                 
                 SUBMISSION METHOD:<br>
                 📱 Send your questions via WhatsApp to Kirst or Vesa<br><br>
@@ -447,17 +447,51 @@ What would you like to do?
                 
                 EXAMPLES:<br>
                 • "What's Chris's most embarrassing childhood memory?"<br>
-                • "Which guest is most likely to embarrass themselves at the wedding?"<br>
+                • "What wedding guest is most likely to embarass themselves on the day?"<br>
                 • "What would Chris do if he won the lottery?"<br><br>
                 
                 Understand what you have to do?
             </div>
             <div style="margin-top: 20px;">
-                <button class="choice-button" onclick="showAdventureAwaits()">
+                <button class="choice-button" onclick="showTask2()">
                     Embarrass Chris and Jackie with my questions? Absolutely!
                 </button>
-                <button class="choice-button" onclick="showAdventureAwaits()">
+                <button class="choice-button" onclick="showTask2()">
                     I will fulfil my task with grace and decorum.
+                </button>
+            </div>
+        </div>
+        
+        <div id="task2" class="party-details">
+            <div class="party-title">🎯 TASK 2: JACKIE BINGO! 🎯</div>
+            <div class="party-info">
+                MISSION BRIEFING:<br>
+                Your second quest involves crowd-sourcing "Jackie-isms" for Jackie Bingo during the hen-do! 🎲<br><br>
+                
+                OPERATION DETAILS:<br>
+                We need to collect Jackie's signature habits, phrases, and behaviors to create bingo cards. Think of those uniquely Jackie moments that make her... well, Jackie! 😄<br><br>
+                
+                EXAMPLES OF JACKIE-ISMS:<br>
+                • Jackie saying something in Japanese 🇯🇵<br>
+                • Jackie's eyes going wide when she's excitedly talking about something 👀<br>
+                • [Your observations of Jackie's quirks and habits!]<br><br>
+                
+                SUBMISSION METHOD:<br>
+                📱 Send your Jackie-isms via WhatsApp to Kirst or Vesa<br><br>
+                
+                DEADLINE:<br>
+                ⏰ June 12th - No extensions!<br><br>
+                
+                The more specific and uniquely Jackie your observations, the better the bingo game will be! 🎉<br><br>
+                
+                Understand what you have to do?
+            </div>
+            <div style="margin-top: 20px;">
+                <button class="choice-button" onclick="showAdventureAwaits()">
+                    Analyse every interaction of Jackie I've ever had? Anxiety becomes my special power
+                </button>
+                <button class="choice-button" onclick="showAdventureAwaits()">
+                    Hehehheheheheheh of course
                 </button>
             </div>
         </div>
@@ -537,6 +571,14 @@ What would you like to do?
             createSakuraPetals();
         }
         
+        function showTask2() {
+            currentPath = 'task2';
+            document.getElementById('initial-message').style.display = 'none';
+            hideAll();
+            document.getElementById('task2').classList.add('show');
+            createSakuraPetals();
+        }
+        
         function showNotJackieVerification() {
             isJackie = false;
             currentPath = 'verification';
@@ -592,6 +634,7 @@ What would you like to do?
             document.getElementById('continue-message').classList.remove('show');
             document.getElementById('adventure-awaits') && document.getElementById('adventure-awaits').classList.remove('show');
             document.getElementById('task1') && document.getElementById('task1').classList.remove('show');
+            document.getElementById('task2') && document.getElementById('task2').classList.remove('show');
         }
         
         function createSakuraPetals() {
