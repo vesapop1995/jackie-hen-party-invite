@@ -261,6 +261,17 @@
                 opacity: 0;
             }
         }
+        
+        @keyframes fadeInUp {
+            from { 
+                opacity: 0; 
+                transform: translateY(30px); 
+            }
+            to { 
+                opacity: 1; 
+                transform: translateY(0); 
+            }
+        }
     </style>
 </head>
 <body>
@@ -321,7 +332,15 @@
                 
                 [Additional quest details will be revealed soon...]<br><br>
                 
-                Contact Kirst or Vesa for burning questions 💌
+                READY TO ACCEPT?
+            </div>
+            <div style="margin-top: 20px;">
+                <button class="choice-button" onclick="showAdventureAwaits()">
+                    Yes!
+                </button>
+                <button class="choice-button" onclick="showAdventureAwaits()">
+                    I have been preparing for this moment for a long time...
+                </button>
             </div>
         </div>
         
@@ -397,6 +416,35 @@ What would you like to do?
                 • Enhanced friendship bonds 💕<br>
                 • Memory creation enchantment 🌟<br><br>
                 
+                READY TO ACCEPT?
+            </div>
+            <div style="margin-top: 20px;">
+                <button class="choice-button" onclick="showAdventureAwaits()">
+                    Yes!
+                </button>
+                <button class="choice-button" onclick="showAdventureAwaits()">
+                    Born ready!
+                </button>
+            </div>
+        </div>
+        
+        <div id="adventure-awaits" class="party-details">
+            <div class="party-title" style="font-size: 18px; margin-bottom: 30px; animation: sparkleGlow 2s ease-in-out infinite alternate;">
+                ✨🌟 YOUR ADVENTURE AWAITS! 🌟✨
+            </div>
+            <div class="party-info" style="text-align: center; font-size: 12px;">
+                <div style="margin: 20px 0; animation: fadeInUp 1s ease-out 0.5s both;">
+                    🎉 Quest Accepted! 🎉
+                </div>
+                <div style="margin: 20px 0; animation: fadeInUp 1s ease-out 1s both;">
+                    The magical journey begins soon...
+                </div>
+                <div style="margin: 30px 0; font-size: 20px; animation: fadeInUp 1s ease-out 1.5s both;">
+                    🌸✨💕✨🌸
+                </div>
+                <div style="margin: 20px 0; animation: fadeInUp 1s ease-out 2s both;">
+                    Get ready for an epic celebration!
+                </div>
             </div>
         </div>
         
@@ -436,6 +484,14 @@ What would you like to do?
             document.getElementById('initial-message').style.display = 'none';
             hideAll();
             document.getElementById('jackie-adventure').classList.add('show');
+            createSakuraPetals();
+        }
+        
+        function showAdventureAwaits() {
+            currentPath = 'awaits';
+            document.getElementById('initial-message').style.display = 'none';
+            hideAll();
+            document.getElementById('adventure-awaits').classList.add('show');
             createSakuraPetals();
         }
         
@@ -492,6 +548,7 @@ What would you like to do?
             document.getElementById('jackie-info').classList.remove('show');
             document.getElementById('denied-message').classList.remove('show');
             document.getElementById('continue-message').classList.remove('show');
+            document.getElementById('adventure-awaits') && document.getElementById('adventure-awaits').classList.remove('show');
         }
         
         function createSakuraPetals() {
