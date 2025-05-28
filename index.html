@@ -332,7 +332,9 @@
                 
                 [Additional quest details will be revealed soon...]<br><br>
                 
-                READY TO ACCEPT?
+                Contact Kirst or Vesa for burning questions 💌<br><br>
+                
+                Ready to accept?
             </div>
             <div style="margin-top: 20px;">
                 <button class="choice-button" onclick="showAdventureAwaits()">
@@ -416,14 +418,46 @@ What would you like to do?
                 • Enhanced friendship bonds 💕<br>
                 • Memory creation enchantment 🌟<br><br>
                 
-                READY TO ACCEPT?
+                Ready to accept?
+            </div>
+            <div style="margin-top: 20px;">
+                <button class="choice-button" onclick="showTask1()">
+                    Yes!
+                </button>
+                <button class="choice-button" onclick="showTask1()">
+                    Born ready!
+                </button>
+            </div>
+        </div>
+        
+        <div id="task1" class="party-details">
+            <div class="party-title">🎯 TASK 1: INTELLIGENCE GATHERING 🎯</div>
+            <div class="party-info">
+                MISSION BRIEFING:<br>
+                Your first quest involves crowd-sourcing questions for a Mr & Mrs game we'll play at the hen-do! 🎮<br><br>
+                
+                OPERATION DETAILS:<br>
+                We will be asking Chris (the husband-to-be) to answer questions, and Jackie will have to try and guess what his answers are. The more creative and revealing your questions, the more entertaining the game! 😏<br><br>
+                
+                SUBMISSION METHOD:<br>
+                📱 Send your questions via WhatsApp to Kirst or Vesa<br><br>
+                
+                DEADLINE:<br>
+                ⏰ June 12th - No extensions!<br><br>
+                
+                EXAMPLES:<br>
+                • "What's Chris's most embarrassing childhood memory?"<br>
+                • "Which of Jackie's habits annoys Chris the most?"<br>
+                • "What would Chris do if he won the lottery?"<br><br>
+                
+                Understand what you have to do?
             </div>
             <div style="margin-top: 20px;">
                 <button class="choice-button" onclick="showAdventureAwaits()">
-                    Yes!
+                    Embarrass Chris and Jackie with my questions? Absolutely!
                 </button>
                 <button class="choice-button" onclick="showAdventureAwaits()">
-                    Born ready!
+                    I will fulfil my task with grace and decorum.
                 </button>
             </div>
         </div>
@@ -495,6 +529,14 @@ What would you like to do?
             createSakuraPetals();
         }
         
+        function showTask1() {
+            currentPath = 'task1';
+            document.getElementById('initial-message').style.display = 'none';
+            hideAll();
+            document.getElementById('task1').classList.add('show');
+            createSakuraPetals();
+        }
+        
         function showNotJackieVerification() {
             isJackie = false;
             currentPath = 'verification';
@@ -549,6 +591,7 @@ What would you like to do?
             document.getElementById('denied-message').classList.remove('show');
             document.getElementById('continue-message').classList.remove('show');
             document.getElementById('adventure-awaits') && document.getElementById('adventure-awaits').classList.remove('show');
+            document.getElementById('task1') && document.getElementById('task1').classList.remove('show');
         }
         
         function createSakuraPetals() {
